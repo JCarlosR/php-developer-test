@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Slim 3</title>
+        <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+        
+        <style>
+        body {
+          padding-top: 70px;
+        }
+        </style>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Test PHP</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/">Inicio</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-info">
+                        <p>Acerca de la API:</p>
+                        <ul>
+                            <li>Para consultar la API se debe realizar una petición GET a /api/salary.</li>
+                            <li>Se debe usar un Content-Type adecuado, según ello responderá con XML o JSON.</li>
+                            <li>Los parámetros GET para filtrar tienen como nombre "min" y "max".</li>
+                        </ul>
+                    </div>        
+                </div>
+            </div>
+            
+            <h1>Listado de empleados</h1>
+            <p class="text-muted">Mostrando resultados filtrados por el siguiente e-mail: <?= $email ?></p>
+
+            <form class="form-inline" action="" method="GET">
+                <div class="form-group">
+                    <label for="exampleInputEmail2">Búsqueda por e-mail</label>
+                    <input type="text" class="form-control" name="email" placeholder="El email o una parte de él">
+                </div>
+                <button type="submit" class="btn btn-default">Buscar</button>
+            </form>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>E-mail</th>
+                        <th>Cargo</th>
+                        <th>Salario</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($employees as $employee) : ?>
+                        <tr>
+                            <td><?= $employee['name'] ?></td>
+                            <td><?= $employee['email'] ?></td>
+                            <td><?= $employee['position'] ?></td>
+                            <td><?= $employee['salary'] ?></td>
+                            <td>
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#modal<?= $employee['id'] ?>">Ver más</button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+
+        </div><!-- /.container -->
+
+        <?php foreach ($employees as $employee) : ?>
+        <div class="modal fade" id="modal<?= $employee['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Información completa</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Datos del empleado seleccionado:</p>
+                        <ul>
+                            <li><strong>Nombre:</strong> <?= $employee['name'] ?></li>
+                            <li><strong>E-mail:</strong> <?= $employee['email'] ?></li>
+                            <li><strong>Teléfono:</strong> <?= $employee['phone'] ?></li>
+                            <li><strong>Dirección:</strong> <?= $employee['address'] ?></li>
+                            <li><strong>Cargo:</strong> <?= $employee['position'] ?></li>
+                            <li><strong>Salario:</strong> <?= $employee['salary'] ?></li>
+                            <li>
+                                <strong>Skills:</strong> 
+                                <?php foreach ($employee['skills'] as $skill): ?>
+                                    <?= $skill['skill'] ?> - 
+                                <?php endforeach; ?>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script
+          src="https://code.jquery.com/jquery-3.2.1.min.js"
+          integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+          crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </body>
+</html>
