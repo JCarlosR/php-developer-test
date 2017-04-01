@@ -20,12 +20,12 @@ Finalmente devolver la cadena.
 - El método build devuelve la salida del algoritmo
 - Considerar el siguiente abecedario : a, b, c, d, e, f, g, h, i, j, k, l, m, n, ñ, o, p, q, r,s, t, u, v, w, x, y, z.
 
-** Ejemplos **
+**Ejemplos**
 - entrada: ```123 abcd*3``` - salida: ```123 bcde* 3```
 - entrada: ```**Casa 52``` - salida: ```**Dbtb 52```
 - entrada: ```**Casa 52Z``` - salida: ```**Dbtb 52A```
 
-## Problema 02
+### Problema 02
 
 Usando PHP, crear una clase llamada **CompleteRange** que tenga un método
 llamado build el cual tome un parámetro de colección de números enteros
@@ -71,7 +71,7 @@ PARTE 02 : Desarrollar la siguiente aplicación
 - Se debe usar el framework slim (http://www.slimframework.com/) para el desarrollo de la aplicación
 - El archivo JSON para trabajar con el aplicativo está en [este enlace](https://github.com/JCarlosR/php-developer-test/blob/master/employees-app/public/employees.json)
 
-### Enunciado
+**Enunciado**
 
 Se desea realizar un pequeño prototipo de aplicación web que tiene como
 finalidad registrar y evaluar a los empleados de la empresa Developers SAC. Para
